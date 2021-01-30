@@ -1,6 +1,7 @@
 
  
 # What does eZ-MM-SPOT do?
+### Will write some fun stuff here soonz <3
   
 
 
@@ -16,31 +17,48 @@
 ## Contact me for the telegram group link.
 - telegram: **@zy0nBear**
 - email: zy0n.bear@protonmail.com
+-----------
+
 # "FAST_BB"
 ### This is the period of the Fast Bollinger Band
     - Value Type: Whole Number
     - Example Value: `"FAST_BB": 30`
+    
 # "SLOW_BB"    
 ### This is the period of the Slow Bollinger Band
     - Value Type: Whole Number
     - Example Value: `"SLOW_BB": 200`
+ -----------
+
+# "STATIC_DELAYS"
+- Value Type: Integer Array - seperated by ', ' **(comma+space)**
+- Example Value: `"STATIC_DELAYS": "80,120,140,160"`
+### What this does 
+- Sets a value for the corresponding TL tier.
+So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl 80 delay would be 160 and tl 100 delay would be 160
+
 # "TL_TIERS"
 ### Controls the TIER setup of TL based on the location of fastBB.mid compared to the Slow Bollinger Band zones.
     - Value Type: Integer Array, seperated by ', ' (comma+space)
     - Example Value: `"TL_TIERS": "20, 40, 80, 100"`
+    
 ### More Details:
         zone 1        fastBB.mid > slowBB.high it would use 20
         zone 2        fastBB.mid < slowBB.high && fastBB.mid > slowBB.mid it would use 40
         zone 3        fastBB.mid < slowBB.mid && fastBB.mid > slowBB.low it would use 80
         zone 4        fastBB.mid < slowBB.low it would use 100
+ -----------
+
 # "MAX_SPOT_SELL"
 ### Number of allowed sell orders to be in the orderbooks. Enabled by QUANTUM_BREAK
     - Value Type: Whole Number
     - Example Value: `"MAX_SPOT_SELL": 1`
+    
 # "MAX_SPOT_BUY"
 ### Number of allowed buy orders to be in the orderbooks.  Enabled by QUANTUM_BREAK
     - Value Type: Whole Number
     - Example Value: ` "MAX_SPOT_BUY": 1`
+    
 # "QUANTUM_BREAK"
 ### This activates restricting of the order books and enables my super smart CANCEL_SPREAD logic.
     - Value Type: Boolean
@@ -56,49 +74,119 @@
         it will attempt to cancel any orders placed on the books pertaining to whichever is disabled.
         When this limit is not reached it sets cancel spread to keep the current orders active.
         When QUANTUM_BREAK is not active, it will set cancel spread based off of calculated gain.
-
-
+        
+# "UBER_CANCEL"
+### This forces all orders to be canceled, once either MAX_SPOT_BUY or MAX_SPOT_SELL # of orders has been exceeded
+    - Value Type: Boolean
+    - Example Value: `"UBER_CANCEL": true`
+-----------
+    
 # "PROFIT_SNAKE"
-### When active( value larger than 0) it represents the gain value at which you wish to override dancing style sell criteria.
+### When active (a value larger than 0) it represents the gain value at which you wish to override dancing style sell criteria.
     - Value Type: Whole Number
     - Example Value: ` "PROFIT_SNAKE": 1.5` 
 - Meaning if position comes into 1.5% profit and dancing style is still saying don't sell. We allow selling.
 
+# "SLOWDOWN_SNAKE": true,
+### When Enabled, this applies the current STATIC_DELAY between PROFIT_SNAKE sell orders.
+    - Value Type: Boolean
+    - Example Value: `"UBER_CANCEL": true`
+    
 # "PROFIT_CLIPPER"
-### When active( value larger than 0) it represents the number of candles to take into consideration of low. 
+### When active (a value larger than 0) it represents the number of candles to take into consideration of low. 
     - Value Type: Whole Number
     - Example Value: `"PROFIT_CLIPPER": 3`
 - When pair.Ask drops below the lowest value of the last 3 candleslow values
 - STOP_LIMIT is triggered, and the position is closed.
 ### THIS FEATURE ONLY WORKS WHEN IN PROFIT. 
 -There are no additional safety checks to determine how close you are to negative gain. Caution.
+
 # "PROFIT_TRAIL"      
-- When active( value larger than 0) it represents in a WHOLE number, the % away from the highest gain reached to initate profit stop_loss 
+- When active (a value larger than 0) it represents in a WHOLE number, the % away from the highest gain reached to initate profit stop_loss 
     - Value Type: Number 
     - Example Value: `"PROFIT_TRAIL": 23.2`
 - This acts as a 'Trailing System' for using STOP_LOSS in profit.
 
 # "HEAVY_BAGS"
 ### HEAVY_BAGS and PANIC_BAG_DROP both must be ABOVE 0 for this feature to ACTIVATE.
-### When active( value larger than 0) it represents the % of used wallet at which we allow the triggering of PANIC LOSS SELLING
+### When active (a value larger than 0) it represents the % of used wallet at which we allow the triggering of PANIC LOSS SELLING
     - Value Type: Number
     - Example Value: `"HEAVY_BAGS": 32.3`
 - What this means is if your position grows to a size larger than 32.3% of your wallet balance, we will enable stop_loss protection on this pair.
 - This is triggered by reaching PANIC_BAG_DROP negative gain. 
 ### **PLEASE NOTE THIS WILL CAUSE IMMEDIATE LOSS OF A PORTION OF YOUR WALLET BALANCE WHEN CONDITIONS ARE MET**
+
 # "PANIC_BAG_DROP"
-### When active( value larger than 0) it represents the % of **negative gain** reached at which to drop the HEAVY_BAGS sized bags. 
+### When active (a value larger than 0) it represents the % of **negative gain** reached at which to drop the HEAVY_BAGS sized bags. 
     - Value Type: Number
     - Example Value: `"PANIC_BAG_DROP": 5`
 - This will trigger STOP_LOSS selling when your position's **NEGATIVE GAIN** is larger than 5
 
-# "STATIC_DELAYS"
-- Value Type: Integer Array - seperated by ', ' **(comma+space)**
-- Example Value: `"STATIC_DELAYS": "80,120,140,160"`
-### What this does 
-- Sets a value for the corresponding TL tier.
-So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl 80 delay would be 160 and tl 100 delay would be 160
+-----------
 
+# "SOFT_DUMP"
+### This value creates a 'NO-BUY-ZONE' at SOFT_DUMP Percent of Price below FAST_BB low band.
+    - Value Type: Number
+    - Example Value: `"SOFT_DUMP": 2`
+- If the lower band of the FAST_BB is at 100, it will stop letting GUNBOT place orders if pair.Ask drops below 98
+    
+# "HARD_DUMP"
+### This value creates a 'NO-BUY-ZONE' at HARD_DUMP Percent of Price below SLOW_BB low band.
+    - Value Type: Number
+    - Example Value: `"HARD_DUMP": 5`
+- If the lower band of the SLOW_BB is at 100, it will stop letting GUNBOT place orders if pair.Ask drops below 95
+
+# "FRUITYMODE"
+### When Enabled, this forces GUNBOT to only allow buying below (lastBuyRate - pair.atr)
+### This allows orders to not bunch up in the same 'price zone'
+    - Value Type: Boolean
+    - Example Value: `"FRUITYMODE": true`
+    
+# "FRUIT_EXPIRES"
+### This givea an expiration timer to FRUITYMODE, it allows buying to resume 'above your last buy rate' after FRUIT_EXPIRES hours.
+    - Value Type: Number
+    - Example Value: `"FRUIT_EXPIRES": 2.3`
+-----------
+
+# "ZY0N_ABP"
+### Is a secondary break-even calculator.
+    - Value Type: Boolean
+    - Example Value: `"ZY0N_ABP": true`
+    
+# "ABP_DEBUG"
+### only enable if I ask you to. 
+    - Value Type: Boolean
+    - Example Value: `"ABP_DEBUG": false`
+    
+# "CYCLE_FINDER"
+### This should be ENABLED, if you are using ZY0N_ABP
+### Do not turn off without knowing its purpose. Please contact me for information if you have questions.
+    - Value Type: Boolean
+    - Example Value: `"CYCLE_FINDER": true`
+    
+# "CYCLE_MM_RESET"
+### THIS SHOULD BE ENABLED, if you are using ZY0N_ABP
+### Do not turn off without knowing its purpose. Please contact me for information if you have questions.
+    - Value Type: Boolean
+    - Example Value: `"CYCLE_MM_RESET": true`
+
+# "TL_PROTECT"
+### This DISABLES TRADING_LIMIT from being set to any value that will cause an order.
+    - Value Type: Boolean
+    - Example Value: `"TL_PROTECT": false`
+- In the last line of my code, before I send the 'overrides' to be written, it checks for this value
+- If it is true, it will set ' '+0 as your TL to prevent a real order from being placed 
+
+# "ZY_GAINER"
+### When active (a value larger than 0) it represents a PERCENT of the spread between Resistance1 and Support1 lines to set as GAIN.
+    - Value Type: Number
+    - Example Value: `"ZY_GAINER": 0.89`
+
+# "ZY_G_SPOT"
+### This is the 'ratio' of change, that must occour to allow your GAIN to be increased or decreased.
+### This is a value between 0-1, 0 being 0% and 1 being 100%
+    - Value Type: Number
+    - Example Value: `"ZY_G_SPOT": 0.23`
 
 # "ALLOW_MMSR"
 ### Manually initiates a SR like sell system.
@@ -122,7 +210,7 @@ This setting determines which trading rules the bot will follow. They are descri
         pair.Ask is the reference point. 
         Example reading of trading style 1:
                     trading only when pair.Ask is below fastBB.high and pair.Ask is above fastBB.low
-     
+-----------
 1. unrestricted trading
 2. only above fastBB.high or below fastBB.low
 3. only above fastBB.high or below fastBB.mid
@@ -152,11 +240,18 @@ This setting determines which trading rules the bot will follow. They are descri
 25. trading disabled.
 26. selling only above fastBB.high when In Position and Positive gain or buying only below fastBB.low when market isnt dumping below SOFT_DUMP % from fastBB.low
 27. selling only above fastBB.mid when In Position and Positive gain or buying only below fastBB.mid when market isnt dumping below SOFT_DUMP % from fastBB.low
+-----------
 
 
-# "Z_TIMER"
-- Value Type: Automatic
-- Example Value: Don't edit this value.
-# "STATS_TIME"  
-- Value Type: Automatic
-- Example Value: Don't edit this value.
+# OVERRIDES AUTOMATTICALY SET, DO NOT TOUCH THEM
+### "Z_TIMER"
+### "ZY_STATS"
+### "ZY_ITB"
+### "MOST_BAL_USED"
+ -----------
+
+# "SECRET_SAUCE"
+### EXPERIMENTAL FULLY 707l0l
+    - Value Type: SECRET Boolean
+    - Example Value: `"SECRET_SAUCE": true`
+- Does the funk
