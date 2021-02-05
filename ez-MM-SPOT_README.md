@@ -31,7 +31,7 @@
  -----------
 
 # "STATIC_DELAYS"
-- Value Type: `Integer Array - seperated by ', ' **(comma+space)**`
+- Value Type: `Integer Array - seperated by ','` **(comma)**
 - Example Value: `"STATIC_DELAYS": "80,120,140,160"`
 ### What this does 
 - Sets a value for the corresponding TL tier.
@@ -39,8 +39,8 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 
 # "TL_TIERS"
 ### Controls the TIER setup of TL based on the location of fastBB.mid compared to the Slow Bollinger Band zones.
-    - Value Type: Integer Array, seperated by ', ' (comma+space)
-    - Example Value: `"TL_TIERS": "20, 40, 80, 100"`
+- Value Type: `Integer Array, seperated by ', '` **(comma+space)**
+- Example Value: `"TL_TIERS": "20, 40, 80, 100"`
     
 ### More Details:
         zone 1        fastBB.mid > slowBB.high it would use 20
