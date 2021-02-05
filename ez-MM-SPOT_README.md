@@ -21,17 +21,17 @@
 
 # "FAST_BB"
 ### This is the period of the Fast Bollinger Band
-    - Value Type: Whole Number
-    - Example Value: `"FAST_BB": 30`
+- Value Type: `Whole Number`
+- Example Value: `"FAST_BB": 30`
     
 # "SLOW_BB"    
 ### This is the period of the Slow Bollinger Band
-    - Value Type: Whole Number
-    - Example Value: `"SLOW_BB": 200`
+- Value Type: `Whole Number`
+- Example Value: `"SLOW_BB": 200`
  -----------
 
 # "STATIC_DELAYS"
-- Value Type: Integer Array - seperated by ', ' **(comma+space)**
+- Value Type: `Integer Array - seperated by ', ' **(comma+space)**`
 - Example Value: `"STATIC_DELAYS": "80,120,140,160"`
 ### What this does 
 - Sets a value for the corresponding TL tier.
@@ -51,18 +51,18 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 
 # "MAX_SPOT_SELL"
 ### Number of allowed sell orders to be in the orderbooks. Enabled by QUANTUM_BREAK
-    - Value Type: Whole Number
-    - Example Value: `"MAX_SPOT_SELL": 1`
+- Value Type: `Whole Number`
+- Example Value: `"MAX_SPOT_SELL": 1`
     
 # "MAX_SPOT_BUY"
 ### Number of allowed buy orders to be in the orderbooks.  Enabled by QUANTUM_BREAK
-    - Value Type: Whole Number
-    - Example Value: ` "MAX_SPOT_BUY": 1`
+- Value Type: `Whole Number`
+- Example Value: ` "MAX_SPOT_BUY": 1`
     
 # "QUANTUM_BREAK"
 ### This activates restricting of the order books and enables my super smart CANCEL_SPREAD logic.
-    - Value Type: Boolean
-    - Example Value: `"QUANTUM_BREAK": true`
+- Value Type: `Boolean`
+- Example Value: `"QUANTUM_BREAK": true`
 ### More Details:
 - When true, it only allows MAX_SPOT_SELL # of sell orders to be active at one time, and MAX_SPOT_BUY # of buy orders to be active at one time
 ### A bit about this CANCEL_SPREAD logic:
@@ -77,25 +77,25 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
         
 # "UBER_CANCEL"
 ### This forces all orders to be canceled, once either MAX_SPOT_BUY or MAX_SPOT_SELL # of orders has been exceeded
-    - Value Type: Boolean
-    - Example Value: `"UBER_CANCEL": true`
+- Value Type: `Boolean`
+- Example Value: `"UBER_CANCEL": true`
 -----------
     
 # "PROFIT_SNAKE"
 ### When active (a value larger than 0) it represents the gain value at which you wish to override dancing style sell criteria.
-    - Value Type: Whole Number
-    - Example Value: ` "PROFIT_SNAKE": 1.5` 
+- Value Type: `Whole Number`
+- Example Value: ` "PROFIT_SNAKE": 1.5` 
 - Meaning if position comes into 1.5% profit and dancing style is still saying don't sell. We allow selling.
 
 # "SLOWDOWN_SNAKE": true,
 ### When Enabled, this applies the current STATIC_DELAY between PROFIT_SNAKE sell orders.
-    - Value Type: Boolean
-    - Example Value: `"UBER_CANCEL": true`
+- Value Type: `Boolean`
+- Example Value: `"UBER_CANCEL": true`
     
 # "PROFIT_CLIPPER"
 ### When active (a value larger than 0) it represents the number of candles to take into consideration of low. 
-    - Value Type: Whole Number
-    - Example Value: `"PROFIT_CLIPPER": 3`
+- Value Type: `Whole Number`
+- Example Value: `"PROFIT_CLIPPER": 3`
 - When pair.Ask drops below the lowest value of the last 3 candleslow values
 - STOP_LIMIT is triggered, and the position is closed.
 ### THIS FEATURE ONLY WORKS WHEN IN PROFIT. 
@@ -103,89 +103,89 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 
 # "PROFIT_TRAIL"      
 - When active (a value larger than 0) it represents in a WHOLE number, the % away from the highest gain reached to initate profit stop_loss 
-    - Value Type: Number 
-    - Example Value: `"PROFIT_TRAIL": 23.2`
+- Value Type: `Number`
+- Example Value: `"PROFIT_TRAIL": 23.2`
 - This acts as a 'Trailing System' for using STOP_LOSS in profit.
 
 # "HEAVY_BAGS"
 ### HEAVY_BAGS and PANIC_BAG_DROP both must be ABOVE 0 for this feature to ACTIVATE.
 ### When active (a value larger than 0) it represents the % of used wallet at which we allow the triggering of PANIC LOSS SELLING
-    - Value Type: Number
-    - Example Value: `"HEAVY_BAGS": 32.3`
+- Value Type: `Number`
+- Example Value: `"HEAVY_BAGS": 32.3`
 - What this means is if your position grows to a size larger than 32.3% of your wallet balance, we will enable stop_loss protection on this pair.
 - This is triggered by reaching PANIC_BAG_DROP negative gain. 
 ### **PLEASE NOTE THIS WILL CAUSE IMMEDIATE LOSS OF A PORTION OF YOUR WALLET BALANCE WHEN CONDITIONS ARE MET**
 
 # "PANIC_BAG_DROP"
 ### When active (a value larger than 0) it represents the % of **negative gain** reached at which to drop the HEAVY_BAGS sized bags. 
-    - Value Type: Number
-    - Example Value: `"PANIC_BAG_DROP": 5`
+- Value Type: `Number`
+- Example Value: `"PANIC_BAG_DROP": 5`
 - This will trigger STOP_LOSS selling when your position's **NEGATIVE GAIN** is larger than 5
 
 -----------
 
 # "SOFT_DUMP"
 ### This value creates a 'NO-BUY-ZONE' at SOFT_DUMP Percent of Price below FAST_BB low band.
-    - Value Type: Number
-    - Example Value: `"SOFT_DUMP": 2`
+- Value Type: `Number`
+- Example Value: `"SOFT_DUMP": 2`
 - If the lower band of the FAST_BB is at 100, it will stop letting GUNBOT place orders if pair.Ask drops below 98
     
 # "HARD_DUMP"
 ### This value creates a 'NO-BUY-ZONE' at HARD_DUMP Percent of Price below SLOW_BB low band.
-    - Value Type: Number
-    - Example Value: `"HARD_DUMP": 5`
+- Value Type: `Number`
+- Example Value: `"HARD_DUMP": 5`
 - If the lower band of the SLOW_BB is at 100, it will stop letting GUNBOT place orders if pair.Ask drops below 95
 
 # "FRUITYMODE"
 ### When Enabled, this forces GUNBOT to only allow buying below (lastBuyRate - pair.atr)
 ### This allows orders to not bunch up in the same 'price zone'
-### OPTIONAL OVERRIDE
-    - Value Type: Boolean
-    - Example Value: `"FRUITYMODE": true`
-# "FRUITY_RSI": 30,
+`OPTIONAL OVERRIDE`
+- Value Type: `Boolean`
+- Example Value: `"FRUITYMODE": true`
+# "FRUITY_RSI"
 ### RSI value to allow buying below
-    - Value Type: Number
-    - Example Value: `"FRUITY_RSI": 30`
+- Value Type: Number
+- Example Value: `"FRUITY_RSI": 30`
 - This will only allow buying to happen when RSI is below 30
 
-# "FRUIT_SPREAD": 2,
+# "FRUIT_SPREAD"
 ### FRUIT_SPREAD * current ATR value = spread between buying. 
-    - Value Type: Number
-    - Example Value: `"FRUIT_SPREAD": 2`
+- Value Type: `Number`
+- Example Value: `"FRUIT_SPREAD": 2`
 - This will keep a spread of pair.atr * FRUIT_SPREAD between your last order and your next. 
 
 # "FRUIT_EXPIRES"
 ### **REQUIRED if using FRUITYMODE** This givea an expiration timer to FRUITYMODE, it allows buying to resume 'above your last buy rate' after FRUIT_EXPIRES hours.
-    - Value Type: Number
-    - Example Value: `"FRUIT_EXPIRES": 2.3`
+- Value Type: `Number`
+- Example Value: `"FRUIT_EXPIRES": 2.3`
 -----------
 
 # "ZY0N_ABP"
 ### Is a secondary break-even calculator.
-    - Value Type: Boolean
-    - Example Value: `"ZY0N_ABP": true`
+- Value Type: `Boolean`
+- Example Value: `"ZY0N_ABP": true`
     
 # "ABP_DEBUG"
 ### only enable if I ask you to. 
-    - Value Type: Boolean
-    - Example Value: `"ABP_DEBUG": false`
+- Value Type: `Boolean`
+- Example Value: `"ABP_DEBUG": false`
     
 # "CYCLE_FINDER"
 ### This should be ENABLED, if you are using ZY0N_ABP
 ### Do not turn off without knowing its purpose. Please contact me for information if you have questions.
-    - Value Type: Boolean
-    - Example Value: `"CYCLE_FINDER": true`
+- Value Type: `Boolean`
+- Example Value: `"CYCLE_FINDER": true`
     
 # "CYCLE_MM_RESET"
 ### THIS SHOULD BE ENABLED, if you are using ZY0N_ABP
 ### Do not turn off without knowing its purpose. Please contact me for information if you have questions.
-    - Value Type: Boolean
-    - Example Value: `"CYCLE_MM_RESET": true`
+- Value Type: `Boolean`
+- Example Value: `"CYCLE_MM_RESET": true`
 
 # "TL_PROTECT"
 ### This DISABLES TRADING_LIMIT from being set to any value that will cause an order.
-    - Value Type: Boolean
-    - Example Value: `"TL_PROTECT": false`
+- Value Type: `Boolean`
+- Example Value: `"TL_PROTECT": false`
 - In the last line of my code, before I send the 'overrides' to be written, it checks for this value
 - If it is true, it will set ' '+0 as your TL to prevent a real order from being placed 
 
@@ -202,7 +202,7 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 
 # "MMSR_RATIO"
 ### This is the integer that your bagValue is divided by to set as TL to use as emergency bag reduction.
-- Value Type: Number
+- Value Type: `Number`
 - Example Value: `"MMSR_RATIO": 5"`
 
 
@@ -255,6 +255,6 @@ This setting determines which trading rules the bot will follow. They are descri
 
 # "SECRET_SAUCE"
 ### EXPERIMENTAL FULLY 707l0l
-    - Value Type: SECRET Boolean
-    - Example Value: `"SECRET_SAUCE": true`
+- Value Type: `SECRET Boolean`
+- Example Value: `"SECRET_SAUCE": true`
 - Does the funk
