@@ -85,7 +85,7 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 ### When active (a value larger than 0) it represents the gain value at which you wish to override dancing style sell criteria.
 - Value Type: `Whole Number`
 - Example Value: ` "PROFIT_SNAKE": 1.5` 
-- Meaning if position comes into 1.5% profit and dancing style is still saying don't sell. We allow selling.
+  - Meaning if position comes into 1.5% profit and dancing style is still saying don't sell. We allow selling.
 
 # "SLOWDOWN_SNAKE": true,
 ### When Enabled, this applies the current STATIC_DELAY between PROFIT_SNAKE sell orders.
@@ -96,31 +96,31 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 ### When active (a value larger than 0) it represents the number of candles to take into consideration of low. 
 - Value Type: `Whole Number`
 - Example Value: `"PROFIT_CLIPPER": 3`
-- When pair.Ask drops below the lowest value of the last 3 candleslow values
-- STOP_LIMIT is triggered, and the position is closed.
+  - When pair.Ask drops below the lowest value of the last 3 candleslow values
+  - STOP_LIMIT is triggered, and the position is closed.
 ### THIS FEATURE ONLY WORKS WHEN IN PROFIT. 
--There are no additional safety checks to determine how close you are to negative gain. Caution.
+  -There are no additional safety checks to determine how close you are to negative gain. Caution.
 
-# "PROFIT_TRAIL"      
-- When active (a value larger than 0) it represents in a WHOLE number, the % away from the highest gain reached to initate profit stop_loss 
+# "PROFIT_TRAIL"
+### When active (a value larger than 0) it represents in a WHOLE number, the % away from the highest gain reached to initate profit stop_loss 
 - Value Type: `Number`
 - Example Value: `"PROFIT_TRAIL": 23.2`
-- This acts as a 'Trailing System' for using STOP_LOSS in profit.
+  - This acts as a 'Trailing System' for using STOP_LOSS in profit.
 
 # "HEAVY_BAGS"
 ### HEAVY_BAGS and PANIC_BAG_DROP both must be ABOVE 0 for this feature to ACTIVATE.
 ### When active (a value larger than 0) it represents the % of used wallet at which we allow the triggering of PANIC LOSS SELLING
 - Value Type: `Number`
 - Example Value: `"HEAVY_BAGS": 32.3`
-- What this means is if your position grows to a size larger than 32.3% of your wallet balance, we will enable stop_loss protection on this pair.
-- This is triggered by reaching PANIC_BAG_DROP negative gain. 
+  - What this means is if your position grows to a size larger than 32.3% of your wallet balance, we will enable stop_loss protection on this pair.
+  - This is triggered by reaching PANIC_BAG_DROP negative gain. 
 ### **PLEASE NOTE THIS WILL CAUSE IMMEDIATE LOSS OF A PORTION OF YOUR WALLET BALANCE WHEN CONDITIONS ARE MET**
 
 # "PANIC_BAG_DROP"
 ### When active (a value larger than 0) it represents the % of **negative gain** reached at which to drop the HEAVY_BAGS sized bags. 
 - Value Type: `Number`
 - Example Value: `"PANIC_BAG_DROP": 5`
-- This will trigger STOP_LOSS selling when your position's **NEGATIVE GAIN** is larger than 5
+  - This will trigger STOP_LOSS selling when your position's **NEGATIVE GAIN** is larger than 5
 
 -----------
 
@@ -134,7 +134,7 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 ### This value creates a 'NO-BUY-ZONE' at HARD_DUMP Percent of Price below SLOW_BB low band.
 - Value Type: `Number`
 - Example Value: `"HARD_DUMP": 5`
-- If the lower band of the SLOW_BB is at 100, it will stop letting GUNBOT place orders if pair.Ask drops below 95
+  - If the lower band of the SLOW_BB is at 100, it will stop letting GUNBOT place orders if pair.Ask drops below 95
 
 # "FRUITYMODE"
 ### When Enabled, this forces GUNBOT to only allow buying below (lastBuyRate - pair.atr)
@@ -146,13 +146,13 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 ### RSI value to allow buying below
 - Value Type: Number
 - Example Value: `"FRUITY_RSI": 30`
-- This will only allow buying to happen when RSI is below 30
+  - This will only allow buying to happen when RSI is below 30
 
 # "FRUIT_SPREAD"
 ### FRUIT_SPREAD * current ATR value = spread between buying. 
 - Value Type: `Number`
 - Example Value: `"FRUIT_SPREAD": 2`
-- This will keep a spread of pair.atr * FRUIT_SPREAD between your last order and your next. 
+  - This will keep a spread of pair.atr * FRUIT_SPREAD between your last order and your next. 
 
 # "FRUIT_EXPIRES"
 ### **REQUIRED if using FRUITYMODE** This givea an expiration timer to FRUITYMODE, it allows buying to resume 'above your last buy rate' after FRUIT_EXPIRES hours.
@@ -186,14 +186,15 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 ### This DISABLES TRADING_LIMIT from being set to any value that will cause an order.
 - Value Type: `Boolean`
 - Example Value: `"TL_PROTECT": false`
-- In the last line of my code, before I send the 'overrides' to be written, it checks for this value
-- If it is true, it will set ' '+0 as your TL to prevent a real order from being placed 
+  - In the last line of my code, before I send the 'overrides' to be written, it checks for this value
+  - If it is true, it will set ' '+0 as your TL to prevent a real order from being placed 
 
 
 
 # "ALLOW_MMSR"
 ### Manually initiates a SR like sell system.
  - Value Type: Boolean
+ - Example Value: `"ALOW_MMSR": false`
  - It disables buying when this mode is true. so don't forget its on once you reduce.**
     - The reduction happens like this:
         - It takes your current pair bagValue and divides it by MMSR_RATIO
@@ -207,6 +208,8 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 
 
 # "DANCING_STYLE"
+- Value Type: `Number (valid values) 1-27`
+- Example Value: `"DANCING_STYLE": 26"`
 This setting determines which trading rules the bot will follow. They are described below.
 
                                               TRADING STYLES
