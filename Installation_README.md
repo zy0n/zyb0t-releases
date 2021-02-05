@@ -1,7 +1,7 @@
 Install Instructions
 ===
 
-linux/macOS
+linux/macOS/windows
 ===
 1. Navigate to a location to where you wish zyb0t to live.
 2. And place zyon-fresh.zip there.
@@ -9,6 +9,7 @@ linux/macOS
 4. Give zyb0t-linux permission to execute
 5. COMPLETE your zybotconfig.js.
 
+## linux/macOS
 ### the codez:
 1. `cd ~`
 2. `unzip zyon-fresh.zip`
@@ -32,6 +33,10 @@ linux/macOS
   - What zybot looks at:
     - state files within /json
     - config.js
+### Windows users: File path must be formatted with \\'s instead of \'s
+        ie: C:\\Users\\Administrator\\Desktop\\wintest
+        where wintest is the folder that gunbot lives within.
+   
 
 # "client_key":
  - This is your license key, it will be used to generate your machine specific license.txt 
