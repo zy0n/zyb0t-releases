@@ -139,11 +139,23 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 # "FRUITYMODE"
 ### When Enabled, this forces GUNBOT to only allow buying below (lastBuyRate - pair.atr)
 ### This allows orders to not bunch up in the same 'price zone'
+### OPTIONAL OVERRIDE
     - Value Type: Boolean
     - Example Value: `"FRUITYMODE": true`
-    
+# "FRUITY_RSI": 30,
+### RSI value to allow buying below
+    - Value Type: Number
+    - Example Value: `"FRUITY_RSI": 30`
+- This will only allow buying to happen when RSI is below 30
+
+# "FRUIT_SPREAD": 2,
+### FRUIT_SPREAD * current ATR value = spread between buying. 
+    - Value Type: Number
+    - Example Value: `"FRUIT_SPREAD": 2`
+- This will keep a spread of pair.atr * FRUIT_SPREAD between your last order and your next. 
+
 # "FRUIT_EXPIRES"
-### This givea an expiration timer to FRUITYMODE, it allows buying to resume 'above your last buy rate' after FRUIT_EXPIRES hours.
+### **REQUIRED if using FRUITYMODE** This givea an expiration timer to FRUITYMODE, it allows buying to resume 'above your last buy rate' after FRUIT_EXPIRES hours.
     - Value Type: Number
     - Example Value: `"FRUIT_EXPIRES": 2.3`
 -----------
@@ -177,16 +189,7 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 - In the last line of my code, before I send the 'overrides' to be written, it checks for this value
 - If it is true, it will set ' '+0 as your TL to prevent a real order from being placed 
 
-# "ZY_GAINER"
-### When active (a value larger than 0) it represents a PERCENT of the spread between Resistance1 and Support1 lines to set as GAIN.
-    - Value Type: Number
-    - Example Value: `"ZY_GAINER": 0.89`
 
-# "ZY_G_SPOT"
-### This is the 'ratio' of change, that must occour to allow your GAIN to be increased or decreased.
-### This is a value between 0-1, 0 being 0% and 1 being 100%
-    - Value Type: Number
-    - Example Value: `"ZY_G_SPOT": 0.23`
 
 # "ALLOW_MMSR"
 ### Manually initiates a SR like sell system.
