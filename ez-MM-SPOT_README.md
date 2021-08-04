@@ -160,6 +160,30 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 - Example Value: `"FRUIT_EXPIRES": 2.3`
 -----------
 
+# "EUCAMODE"
+### When Enabled, this forces GUNBOT to only allow selling above (lastSellRate + (pair.atr * EUCA_SPREAD))
+### This allows orders to not bunch up in the same 'price zone'
+`OPTIONAL OVERRIDE`
+- Value Type: `Boolean`
+- Example Value: `"EUCAMODE": true`
+# "EUCA_RSI"
+### RSI value to allow buying below
+- Value Type: Number
+- Example Value: `"EUCA_RSI": 60`
+  - This will only allow selling to happen when RSI is above 60
+
+# "EUCA_SPREAD"
+### EUCA_SPREAD * current ATR value = spread between buying. 
+- Value Type: `Number`
+- Example Value: `"EUCA_SPREAD": 2`
+  - This will keep a spread of pair.atr * EUCA_SPREAD between your last order and your next. 
+
+# "EUCA_EXPIRES"
+### **REQUIRED if using EUCAMODE** This givea an expiration timer to EUCAYMODE, it allows buying to resume 'below your last sell rate' after EUCA_EXPIRES hours.
+- Value Type: `Number`
+- Example Value: `"EUCA_EXPIRES": 2.3`
+-----------
+
 # "ZY0N_ABP"
 ### Is a secondary break-even calculator.
 - Value Type: `Boolean`
