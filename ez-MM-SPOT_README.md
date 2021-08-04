@@ -179,7 +179,7 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
   - This will keep a spread of pair.atr * EUCA_SPREAD between your last order and your next. 
 
 # "EUCA_EXPIRES"
-### **REQUIRED if using EUCAMODE** This givea an expiration timer to EUCAYMODE, it allows buying to resume 'below your last sell rate' after EUCA_EXPIRES hours.
+### **REQUIRED if using EUCAMODE** This givea an expiration timer to EUCAMODE, it allows buying to resume 'below your last sell rate' after EUCA_EXPIRES hours.
 - Value Type: `Number`
 - Example Value: `"EUCA_EXPIRES": 2.3`
 -----------
