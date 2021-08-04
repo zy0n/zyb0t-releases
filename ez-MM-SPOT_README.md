@@ -137,7 +137,7 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
   - If the lower band of the SLOW_BB is at 100, it will stop letting GUNBOT place orders if pair.Ask drops below 95
 
 # "FRUITYMODE"
-### When Enabled, this forces GUNBOT to only allow buying below (lastBuyRate - pair.atr)
+### When Enabled, this forces GUNBOT to only allow buying below (lastBuyRate - (pair.atr * FRUIT_SPREAD))
 ### This allows orders to not bunch up in the same 'price zone'
 `OPTIONAL OVERRIDE`
 - Value Type: `Boolean`
