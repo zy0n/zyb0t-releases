@@ -246,6 +246,7 @@ This setting determines which trading rules the bot will follow. They are descri
 25. trading disabled.
 26. selling only above fastBB.high when In Position and Positive gain or buying only below fastBB.low when market isnt dumping below SOFT_DUMP % from fastBB.low
 27. selling only above fastBB.mid when In Position and Positive gain or buying only below fastBB.mid when market isnt dumping below SOFT_DUMP % from fastBB.low
+28. selling only when in Profit, and in Position or buying when Not in Profit
 -----------
 
 
