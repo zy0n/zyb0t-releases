@@ -147,12 +147,14 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 - Value Type: Number
 - Example Value: `"FRUITY_RSI": 30`
   - This will only allow buying to happen when RSI is below 30
+  - STATIC_DELAYS are not taken into account when FRUITY_RSI allows trading.
 
 # "FRUIT_SPREAD"
 ### FRUIT_SPREAD * current ATR value = spread between buying. 
 - Value Type: `Number`
 - Example Value: `"FRUIT_SPREAD": 2`
-  - This will keep a spread of pair.atr * FRUIT_SPREAD between your last order and your next. 
+  - This will keep a spread of pair.atr * FRUIT_SPREAD between your last order and your next.
+  - STATIC_DELAYS are taken into account when the bot is making trades based on FRUIT_SPREAD.
 
 # "FRUIT_EXPIRES"
 ### **REQUIRED if using FRUITYMODE** This givea an expiration timer to FRUITYMODE, it allows buying to resume 'above your last buy rate' after FRUIT_EXPIRES hours.
@@ -171,12 +173,14 @@ So in this example for tl 20 the delay would be 80, tl 40 delay would be 120, tl
 - Value Type: Number
 - Example Value: `"EUCA_RSI": 60`
   - This will only allow selling to happen when RSI is above 60
+  - STATIC_DELAYS are not taken into account when EUCA_RSI allows trading.
 
 # "EUCA_SPREAD"
 ### EUCA_SPREAD * current ATR value = spread between buying. 
 - Value Type: `Number`
 - Example Value: `"EUCA_SPREAD": 2`
-  - This will keep a spread of pair.atr * EUCA_SPREAD between your last order and your next. 
+  - This will keep a spread of pair.atr * EUCA_SPREAD between your last order and your next.
+  - STATIC_DELAYS are taken into account when the bot is making trades based on EUCA_SPREAD.
 
 # "EUCA_EXPIRES"
 ### **REQUIRED if using EUCAMODE** This givea an expiration timer to EUCAMODE, it allows buying to resume 'below your last sell rate' after EUCA_EXPIRES hours.
