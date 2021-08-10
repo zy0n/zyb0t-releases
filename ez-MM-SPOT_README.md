@@ -268,7 +268,7 @@ This setting determines which trading rules the bot will follow. They are descri
 19. selling only above fastBB.mid when In Position and Positive Gain or buying only below fastBB.low and below slowBB.low and market isnt dumping below HARD_DUMP % from slowBB.low when in Negative Gain
 20. only below fastBB.high and above fastBB.low
 21. selling only above fastBB.mid when In Position and Positive gain or buying only below fastBB.mid when market isnt dumping below SOFT_DUMP % from fastBB.low
-22. (SEMYO MIDNIGHT CONFIG) selling only above fastBB.mid when In Position and Positive gain or buying only below fastBB.high when market isnt dumping below SOFT_DUMP % from fastBB.low
+22. (Semyo Midnight Config) selling only above fastBB.mid when In Position and Positive gain or buying only below fastBB.high when market isnt dumping below SOFT_DUMP % from fastBB.low
 23. trading always above the bbFast.low
 24. trading always bove the bbSlow.low
 25. trading disabled.
